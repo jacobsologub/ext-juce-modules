@@ -68,13 +68,31 @@ public:
     static StringArray availableMediaTypesForSource (Source sourceToUse);
     
     //==============================================================================
+    /** A class for receiving callbacks from a ImagePicker.
+     
+        To be told when a image picker changes, you can register a 
+        ImagePicker::Listener object using ImagePicker::addListener().
+     
+        @see ImagePicker::addListener, ImagePicker::removeListener
+     */
     class JUCE_API  Listener
     {
     public:
         /** Destructor. */
         virtual ~Listener() {}
         
+        //==============================================================================
+        /** Called when the image picker has finished loading the selected 
+            image.
+         
+            @see ImagePicker::imagePickerCanceled
+         */
         virtual void imagePickerFinished (const Image& image) = 0;
+        
+        /** Called when the image picker has been canceled by the user.
+         
+            @see ImagePicker::imagePickerFinished
+         */
         virtual void imagePickerCanceled()  {}
     };
     
