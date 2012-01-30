@@ -1,0 +1,20 @@
+{
+  "id":             "extj_mobile",
+  "name":           "Ext JUCE Mobile Classes",
+  "version":        "1.0.0",
+  "description":    "Mobile centric classes.",
+  "website":        "",
+  "license":        "MIT License (MIT)",
+
+  "dependencies":   [ { "id": "juce_gui_basics",   "version": "matching" } ],
+
+  "include":        "extj_mobile.h",
+
+  "compile":        [ { "file": "extj_mobile.cpp", "target": "! xcode" },
+                      { "file": "extj_mobile.mm",  "target": "xcode" } ],
+
+  "browse":         [ "media/*", 
+                      "native/*" ],
+
+  "iOSFrameworks":  "MobileCoreServices"
+}

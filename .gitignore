@@ -1,0 +1,17 @@
+# juce modules ignore
+juce_video/
+juce_opengl/
+juce_gui_extra/
+juce_gui_basics/
+juce_graphics/
+juce_events/
+juce_data_structures/
+juce_cryptography/
+juce_core/
+juce_browser_plugin/
+juce_audio_utils/
+juce_audio_processors/
+juce_audio_plugin_client/
+juce_audio_formats/
+juce_audio_devices/
+juce_audio_basics/
