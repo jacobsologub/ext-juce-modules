@@ -27,15 +27,20 @@
 END_JUCE_NAMESPACE
 
 //==============================================================================
-@interface JuceUIImagePicker : UIImagePickerController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface JuceUIImagePicker : UIImagePickerController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 {
 @private
     juce::ImagePicker* owner;
+    UIPopoverController* popover;
 }
+
+@property (nonatomic, assign) UIPopoverController* popover;
 
 @end
 
 @implementation JuceUIImagePicker
+
+@synthesize popover;
 
 - (id) initWithOwner: (juce::ImagePicker*) owner_
 {
@@ -65,6 +70,17 @@ END_JUCE_NAMESPACE
 {
     self.delegate = nil;
     owner->sendImagePickerCanceledMessage (self);
+}
+
+- (void) setPopover: (UIPopoverController*) newPopover
+{
+    popover = newPopover;
+    popover.delegate = self;
+}
+
+- (void) popoverControllerDidDismissPopover: (UIPopoverController*) popoverController
+{
+    [popoverController release];
 }
 
 + (UIViewController*) topLevelViewController
@@ -133,7 +149,23 @@ void ImagePicker::show (Source sourceToUse)
     {
         JuceUIImagePicker* imagePicker = [[JuceUIImagePicker alloc] initWithOwner: this];
         imagePicker.sourceType = (UIImagePickerControllerSourceType) sourceToUse;
-        [controller presentModalViewController: imagePicker animated: YES];
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            [controller presentModalViewController: imagePicker animated: YES];
+        }
+        else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {            
+            UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController: imagePicker];
+            popover.popoverContentSize = CGSizeMake (320.0f, 480.0f);
+            
+            imagePicker.popover = popover;
+            
+            [popover presentPopoverFromRect: CGRectMake (controller.view.center.x - 160.0f, controller.view.center.y, 320.0f, 480.0f) 
+                                     inView: controller.view 
+                   permittedArrowDirections: UIPopoverArrowDirectionDown 
+                                   animated: YES];
+        }
     }
 }
 
@@ -158,6 +190,10 @@ void ImagePicker::sendImagePickerFinishedMessage (void* picker_, void* info)
         [controller dismissModalViewControllerAnimated: YES];
         
         JuceUIImagePicker* imagePicker = (JuceUIImagePicker*) picker_;
+        
+        [imagePicker.popover dismissPopoverAnimated: YES];
+        [imagePicker.popover release];
+        
         [imagePicker release];
     }
     
