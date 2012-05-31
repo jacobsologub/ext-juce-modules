@@ -113,7 +113,7 @@ public:
      
         @see saveToPhotosAlbum
      */
-    void show (Source sourceToUse = SavedPhotosAlbum);
+    void show (Source sourceToUse = SavedPhotosAlbum, Rectangle<int> areaToPointTo = Rectangle<int>());
     
     //==============================================================================
     /**	Adds the specified image to the user’s Camera Roll album.

@@ -141,7 +141,7 @@ void ImagePicker::removeListener (Listener* const listener)
 }
 
 //==============================================================================
-void ImagePicker::show (Source sourceToUse)
+void ImagePicker::show (Source sourceToUse, Rectangle<int> areaToPointTo)
 {    
     UIViewController* controller = [JuceUIImagePicker topLevelViewController];
     
@@ -160,10 +160,17 @@ void ImagePicker::show (Source sourceToUse)
             popover.popoverContentSize = CGSizeMake (320.0f, 480.0f);
             
             imagePicker.popover = popover;
+                        
+            CGRect fromFrame = CGRectMake (controller.view.center.x - 160.0f, controller.view.center.y, 320.0f, 480.0f);
             
-            [popover presentPopoverFromRect: CGRectMake (controller.view.center.x - 160.0f, controller.view.center.y, 320.0f, 480.0f) 
+            if (! areaToPointTo.isEmpty())
+            {
+                fromFrame = CGRectMake (areaToPointTo.getX(), areaToPointTo.getY(), areaToPointTo.getWidth(), areaToPointTo.getHeight());
+            }
+            
+            [popover presentPopoverFromRect: fromFrame
                                      inView: controller.view 
-                   permittedArrowDirections: UIPopoverArrowDirectionDown 
+                   permittedArrowDirections: UIPopoverArrowDirectionAny 
                                    animated: YES];
         }
     }
