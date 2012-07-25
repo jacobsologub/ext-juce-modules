@@ -24,7 +24,7 @@
   ==============================================================================
 */
 
-END_JUCE_NAMESPACE
+}
 
 //==============================================================================
 @interface JuceUIImagePicker : UIImagePickerController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
@@ -96,7 +96,8 @@ END_JUCE_NAMESPACE
 }
 @end
 
-BEGIN_JUCE_NAMESPACE
+namespace juce
+{
 
 //==============================================================================
 ImagePicker::ImagePicker()

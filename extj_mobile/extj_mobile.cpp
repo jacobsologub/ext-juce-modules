@@ -59,7 +59,8 @@
 
 using namespace juce;
 
-BEGIN_JUCE_NAMESPACE
+namespace juce
+{
 
 //==============================================================================
 #if JUCE_MAC || JUCE_IOS
@@ -83,4 +84,4 @@ BEGIN_JUCE_NAMESPACE
 #elif JUCE_ANDROID
 #endif
 
-END_JUCE_NAMESPACE
+}

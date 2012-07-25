@@ -30,7 +30,8 @@
 #include "../juce_gui_basics/juce_gui_basics.h"
 
 //=============================================================================
-BEGIN_JUCE_NAMESPACE
+namespace juce
+{
 
 // START_AUTOINCLUDE
 #ifndef __EXTJ_IMAGE_PICKER_EXTJHEADER__
@@ -38,6 +39,6 @@ BEGIN_JUCE_NAMESPACE
 #endif
 // END_AUTOINCLUDE
 
-END_JUCE_NAMESPACE
+}
 
 #endif   // __EXTJ_MOBILE_EXTJHEADER__
