@@ -69,6 +69,7 @@ namespace juce
 
  #if JUCE_IOS
   #include "native/extj_ios_ImagePicker.mm"
+  #include "native/extj_ios_SystemAudioVolumeComponent.mm"
  #endif
 
  #if JUCE_WEB_BROWSER

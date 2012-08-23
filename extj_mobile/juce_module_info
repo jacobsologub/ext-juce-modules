@@ -16,5 +16,5 @@
   "browse":         [ "media/*", 
                       "native/*" ],
 
-  "iOSFrameworks":  "MobileCoreServices"
+  "iOSFrameworks":  "MobileCoreServices MediaPlayer"
 }

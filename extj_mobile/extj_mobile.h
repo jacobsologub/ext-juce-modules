@@ -37,6 +37,9 @@ namespace juce
 #ifndef __EXTJ_IMAGE_PICKER_EXTJHEADER__
  #include "media/extj_ImagePicker.h"
 #endif
+#ifndef __EXTJ_SYSTEM_AUDIO_VOLUME_COMPONENT_EXTJHEADER__
+ #include "media/extj_SystemAudioVolumeComponent.h"
+#endif
 // END_AUTOINCLUDE
 
 }
